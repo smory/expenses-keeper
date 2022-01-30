@@ -1,12 +1,13 @@
 package sk.smorada.expenseskeerer
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import android.view.Menu
 import android.view.MenuItem
 import sk.smorada.expenseskeerer.databinding.ActivityMainBinding
+import sk.smorada.expenseskeerer.ui.camera.CameraActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,9 +24,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Button pressed", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.fab)
-                .setAction("Action", null).show()
+            startActivity(Intent(this, CameraActivity::class.java))
         }
     }
 

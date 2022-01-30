@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="sk.smorada.expenseskeerer">
 
+    <uses-permission android:name="android.hardware.camera" />
+
     <application
         android:name=".KeepersApplication"
         android:allowBackup="true"
@@ -12,8 +14,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ExpensesKeerer"
+        android:theme="@style/Theme.ExpensesKeeper"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.camera.CameraActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ExpensesKeeper.Photo"
+            android:label="@string/title_activity_camera" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
