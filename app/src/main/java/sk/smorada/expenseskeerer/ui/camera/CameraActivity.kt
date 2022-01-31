@@ -116,7 +116,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun finishWithResult(image: File) {
-        setResult(Activity.RESULT_OK, Intent().putExtra("path", image.absolutePath))
+        setResult(Activity.RESULT_OK, Intent().putExtra("photoPath", image.absolutePath))
         finish()
     }
 

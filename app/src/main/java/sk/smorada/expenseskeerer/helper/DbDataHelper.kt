@@ -2,7 +2,9 @@ package sk.smorada.expenseskeerer.helper
 
 import android.util.Log
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.MaybeSubject
 import sk.smorada.expenseskeerer.di.Injector
 import sk.smorada.expenseskeerer.model.Document
 import kotlin.random.Random
@@ -23,14 +25,13 @@ class DbDataHelper {
                         "IN$i",
                         "EUR",
                         i * 2f,
-                        20,
-                        i.toFloat(),
                         now,
                         now,
                         now,
                         "Company $i",
                         "",
-                        null
+                        null,
+                        true
                     )
                 )
             }
@@ -51,20 +52,37 @@ class DbDataHelper {
                     "IN$i",
                     "EUR",
                     i * 2f,
-                    20,
-                    i.toFloat(),
                     now,
                     now,
                     now,
                     "Company $i",
                     "",
-                    null
+                    null,
+                    true
                 )
             ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { onSuccessAction.invoke() },
                     { Log.e(TAG, "Failed to insert a record", it) })
+        }
+
+        fun getLastDocumentMaybe(): Maybe<Document> {
+            val subject = MaybeSubject.create<Document>()
+            return subject.doOnSubscribe {
+                Injector.appComponent.getPersistenceProvider().loadAllDocuments()
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({ list ->
+                        if ((list.isEmpty())) {
+                            subject.onComplete()
+                        } else {
+                            subject.onSuccess(list.last())
+                        }
+                    }, {
+                        subject.onError(it)
+                    })
+            }
+
         }
     }
 }
