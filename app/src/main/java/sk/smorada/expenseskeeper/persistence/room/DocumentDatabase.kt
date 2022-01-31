@@ -1,9 +1,8 @@
-package sk.smorada.expenseskeerer.persistence.room
+package sk.smorada.expenseskeeper.persistence.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import sk.smorada.expenseskeerer.model.Document
-import sk.smorada.expenseskeerer.persistence.room.DocumentDao
+import sk.smorada.expenseskeeper.model.Document
 
 @Database(entities = [Document::class], version = 1)
 abstract class DocumentDatabase: RoomDatabase() {

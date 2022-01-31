@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer.ui.details
+package sk.smorada.expenseskeeper.ui.details
 
 import android.text.TextUtils
 import androidx.lifecycle.LiveData
@@ -10,9 +10,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.SingleSubject
-import sk.smorada.expenseskeerer.di.Injector
-import sk.smorada.expenseskeerer.model.Document
-import sk.smorada.expenseskeerer.persistence.PersistenceProvider
+import sk.smorada.expenseskeeper.di.Injector
+import sk.smorada.expenseskeeper.model.Document
+import sk.smorada.expenseskeeper.persistence.PersistenceProvider
 import java.io.File
 
 class DetailsViewModel : ViewModel() {

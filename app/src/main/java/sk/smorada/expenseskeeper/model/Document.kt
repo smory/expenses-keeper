@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer.model
+package sk.smorada.expenseskeeper.model
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,11 +1,11 @@
-package sk.smorada.expenseskeerer.di.module
+package sk.smorada.expenseskeeper.di.module
 
 import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import sk.smorada.expenseskeerer.persistence.room.DocumentDatabase
-import sk.smorada.expenseskeerer.persistence.PersistenceProvider
+import sk.smorada.expenseskeeper.persistence.room.DocumentDatabase
+import sk.smorada.expenseskeeper.persistence.PersistenceProvider
 import javax.inject.Named
 import javax.inject.Singleton
 

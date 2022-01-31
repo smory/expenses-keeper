@@ -1,9 +1,9 @@
-package sk.smorada.expenseskeerer.persistence
+package sk.smorada.expenseskeeper.persistence
 
 import androidx.paging.PagingSource
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import sk.smorada.expenseskeerer.model.Document
+import sk.smorada.expenseskeeper.model.Document
 
 interface PersistenceProvider {
 

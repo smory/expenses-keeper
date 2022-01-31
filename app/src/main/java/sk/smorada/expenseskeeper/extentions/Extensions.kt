@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer.extentions
+package sk.smorada.expenseskeeper.extentions
 
 import android.graphics.BitmapFactory
 import android.text.TextUtils

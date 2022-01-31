@@ -1,19 +1,17 @@
-package sk.smorada.expenseskeerer
+package sk.smorada.expenseskeeper
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import android.view.Menu
-import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import sk.smorada.expenseskeerer.databinding.ActivityMainBinding
-import sk.smorada.expenseskeerer.helper.DbDataHelper
-import sk.smorada.expenseskeerer.ui.camera.CameraActivity
-import sk.smorada.expenseskeerer.ui.details.DetailsActivity
+import sk.smorada.expenseskeeper.databinding.ActivityMainBinding
+import sk.smorada.expenseskeeper.helper.DbDataHelper
+import sk.smorada.expenseskeeper.ui.camera.CameraActivity
+import sk.smorada.expenseskeeper.ui.details.DetailsActivity
 
 class MainActivity : AppCompatActivity() {
 

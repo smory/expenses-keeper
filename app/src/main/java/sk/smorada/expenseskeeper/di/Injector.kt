@@ -1,7 +1,7 @@
-package sk.smorada.expenseskeerer.di
+package sk.smorada.expenseskeeper.di
 
 import android.app.Application
-import sk.smorada.expenseskeerer.di.module.AppModule
+import sk.smorada.expenseskeeper.di.module.AppModule
 
 class Injector {
 

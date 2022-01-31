@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer.di.module
+package sk.smorada.expenseskeeper.di.module
 
 import android.app.Application
 import android.content.Context

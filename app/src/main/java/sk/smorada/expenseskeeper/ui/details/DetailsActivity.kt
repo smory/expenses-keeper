@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer.ui.details
+package sk.smorada.expenseskeeper.ui.details
 
 import android.app.Activity
 import android.os.Bundle
@@ -13,14 +13,14 @@ import androidx.core.view.WindowCompat
 import com.google.android.material.datepicker.MaterialDatePicker
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import sk.smorada.expenseskeerer.R
-import sk.smorada.expenseskeerer.databinding.ActivityDetailsBinding
-import sk.smorada.expenseskeerer.extentions.Extensions.containsText
-import sk.smorada.expenseskeerer.extentions.Extensions.isConvertableToFloat
-import sk.smorada.expenseskeerer.extentions.Extensions.setImageFromPath
-import sk.smorada.expenseskeerer.extentions.Extensions.textAsFloat
-import sk.smorada.expenseskeerer.extentions.Extensions.toFormattedDateString
-import sk.smorada.expenseskeerer.model.Document
+import sk.smorada.expenseskeeper.R
+import sk.smorada.expenseskeeper.databinding.ActivityDetailsBinding
+import sk.smorada.expenseskeeper.extentions.Extensions.containsText
+import sk.smorada.expenseskeeper.extentions.Extensions.isConvertableToFloat
+import sk.smorada.expenseskeeper.extentions.Extensions.setImageFromPath
+import sk.smorada.expenseskeeper.extentions.Extensions.textAsFloat
+import sk.smorada.expenseskeeper.extentions.Extensions.toFormattedDateString
+import sk.smorada.expenseskeeper.model.Document
 
 class DetailsActivity : AppCompatActivity() {
 

@@ -1,12 +1,12 @@
-package sk.smorada.expenseskeerer.helper
+package sk.smorada.expenseskeeper.helper
 
 import android.util.Log
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.MaybeSubject
-import sk.smorada.expenseskeerer.di.Injector
-import sk.smorada.expenseskeerer.model.Document
+import sk.smorada.expenseskeeper.di.Injector
+import sk.smorada.expenseskeeper.model.Document
 import kotlin.random.Random
 
 class DbDataHelper {

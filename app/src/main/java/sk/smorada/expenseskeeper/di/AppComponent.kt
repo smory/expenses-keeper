@@ -1,10 +1,10 @@
-package sk.smorada.expenseskeerer.di
+package sk.smorada.expenseskeeper.di
 
 import android.content.Context
 import dagger.Component
-import sk.smorada.expenseskeerer.di.module.AppModule
-import sk.smorada.expenseskeerer.di.module.PersistenceModule
-import sk.smorada.expenseskeerer.persistence.PersistenceProvider
+import sk.smorada.expenseskeeper.di.module.AppModule
+import sk.smorada.expenseskeeper.di.module.PersistenceModule
+import sk.smorada.expenseskeeper.persistence.PersistenceProvider
 import javax.inject.Named
 import javax.inject.Singleton
 

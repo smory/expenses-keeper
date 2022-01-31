@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer.ui.camera
+package sk.smorada.expenseskeeper.ui.camera
 
 import android.Manifest
 import android.app.Activity
@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import io.fotoapparat.Fotoapparat
-import sk.smorada.expenseskeerer.R
-import sk.smorada.expenseskeerer.databinding.ActivityCameraBinding
+import sk.smorada.expenseskeeper.R
+import sk.smorada.expenseskeeper.databinding.ActivityCameraBinding
 import java.io.File
 
 class CameraActivity : AppCompatActivity() {

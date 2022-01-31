@@ -1,11 +1,11 @@
-package sk.smorada.expenseskeerer.persistence.room
+package sk.smorada.expenseskeeper.persistence.room
 
 import androidx.paging.PagingSource
 import androidx.room.*
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import sk.smorada.expenseskeerer.model.Document
-import sk.smorada.expenseskeerer.persistence.PersistenceProvider
+import sk.smorada.expenseskeeper.model.Document
+import sk.smorada.expenseskeeper.persistence.PersistenceProvider
 
 @Dao
 interface DocumentDao: PersistenceProvider {

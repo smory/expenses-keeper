@@ -1,8 +1,8 @@
-package sk.smorada.expenseskeerer
+package sk.smorada.expenseskeeper
 
 import android.app.Application
 import com.facebook.stetho.Stetho
-import sk.smorada.expenseskeerer.di.Injector
+import sk.smorada.expenseskeeper.di.Injector
 
 class KeepersApplication: Application() {
 

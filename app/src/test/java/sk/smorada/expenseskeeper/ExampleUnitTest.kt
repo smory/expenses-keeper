@@ -1,4 +1,4 @@
-package sk.smorada.expenseskeerer
+package sk.smorada.expenseskeeper
 
 import org.junit.Test
 
