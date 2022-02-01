@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:id="@+id/coordinator"
     tools:context=".ui.details.DetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,7 +29,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true">
+            android:id="@+id/cl_content"
+            android:animateLayoutChanges="true"
+            android:paddingBottom="24dp">
 
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/v_photo"
@@ -233,7 +236,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
                 android:text="@android:string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/b_save"

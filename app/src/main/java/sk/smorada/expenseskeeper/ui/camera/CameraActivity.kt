@@ -14,13 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import io.fotoapparat.Fotoapparat
+import sk.smorada.expenseskeeper.Consts
 import sk.smorada.expenseskeeper.R
 import sk.smorada.expenseskeeper.databinding.ActivityCameraBinding
 import java.io.File
 
 class CameraActivity : AppCompatActivity() {
 
-    private val TAG = "Camera"
+    private val tag = this::class.simpleName!!
     private lateinit var binding: ActivityCameraBinding
     private lateinit var fotoapparat: Fotoapparat
     private val requestPermissionLauncher =
@@ -75,11 +76,11 @@ class CameraActivity : AppCompatActivity() {
         fotoapparat = Fotoapparat(
             this,
             binding.vCamera,
-            cameraErrorCallback = { e -> Log.e(TAG, "", e) })
+            cameraErrorCallback = { e -> Log.e(tag, "", e) })
 
         binding.vTakePhoto.setOnClickListener {
             val file = File(filesDir, "${System.currentTimeMillis()}.jpg")
-            Log.v(TAG, file.absolutePath)
+            Log.v(tag, file.absolutePath)
             fotoapparat.takePicture().saveToFile(file)
                 .whenAvailable { result ->
                 if (result == null) {
@@ -116,7 +117,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun finishWithResult(image: File) {
-        setResult(Activity.RESULT_OK, Intent().putExtra("photoPath", image.absolutePath))
+        setResult(Activity.RESULT_OK, Intent().putExtra(Consts.PHOTO_PATH_PARAM, image.absolutePath))
         finish()
     }
 

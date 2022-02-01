@@ -13,10 +13,11 @@ import androidx.core.view.WindowCompat
 import com.google.android.material.datepicker.MaterialDatePicker
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import sk.smorada.expenseskeeper.Consts
 import sk.smorada.expenseskeeper.R
 import sk.smorada.expenseskeeper.databinding.ActivityDetailsBinding
 import sk.smorada.expenseskeeper.extentions.Extensions.containsText
-import sk.smorada.expenseskeeper.extentions.Extensions.isConvertableToFloat
+import sk.smorada.expenseskeeper.extentions.Extensions.isConvertibleToFloat
 import sk.smorada.expenseskeeper.extentions.Extensions.setImageFromPath
 import sk.smorada.expenseskeeper.extentions.Extensions.textAsFloat
 import sk.smorada.expenseskeeper.extentions.Extensions.toFormattedDateString
@@ -25,7 +26,8 @@ import sk.smorada.expenseskeeper.model.Document
 class DetailsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityDetailsBinding
-    private val TAG = this::class.simpleName
+    private val tag = this::class.simpleName
+    private val pickerTag = "datePicker"
 
     private var document: Document? = null
     private val model: DetailsViewModel by viewModels()
@@ -36,11 +38,18 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setupContentView()
         initModel()
         setupToolbar()
         setupOnClickListeners()
+    }
+
+    private fun setupContentView() {
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        getDocumentFromIntent()?.let {  // to remove jumping animation when activity launches
+            binding.gInvoiceControls.visibility = if(it.isInvoice()) View.VISIBLE else View.GONE
+        }
+        setContentView(binding.root)
     }
 
     private fun setupToolbar() {
@@ -81,11 +90,12 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun initModel() {
-        val document = intent.getParcelableExtra<Document>("doc")
-        val photoPath = document?.photoPath ?: intent.getStringExtra("photoPath") ?: ""
-        model.iniModel(document, photoPath)
+        model.iniModel(getDocumentFromIntent(), getPhotoPathFormIntent())
         model.documentLiveData.observe(this, this::setValues)
     }
+
+    private fun getDocumentFromIntent(): Document? = intent.getParcelableExtra<Document>(Consts.DOCUMENT_PARAM)
+    private fun getPhotoPathFormIntent(): String = document?.photoPath ?: intent.getStringExtra(Consts.PHOTO_PATH_PARAM) ?: ""
 
     private fun setValues(document: Document) {
         this.document = document
@@ -109,15 +119,15 @@ class DetailsActivity : AppCompatActivity() {
     private fun enableEditing(enabled: Boolean) {
         binding.gButtons.visibility = if (enabled) View.VISIBLE else View.GONE
         val views = listOf<View>(
-            binding.swPaid,
-            binding.swInvoice,
             binding.tilCreationDate,
             binding.tilDueDate,
             binding.tilInvoiceNo,
             binding.tilTotal,
             binding.tilCurrency,
             binding.tilPartner,
-            binding.tilNote
+            binding.tilNote,
+            binding.swPaid,
+            binding.swInvoice,
         )
         views.forEach {
             it.isEnabled = enabled
@@ -151,7 +161,7 @@ class DetailsActivity : AppCompatActivity() {
         val valid = validateData()
         if (valid) {
             val single = model.save(
-                binding.etInvoiceNo.text.toString(),
+                if(binding.swInvoice.isChecked) binding.etInvoiceNo.text.toString() else null,
                 binding.etCurrency.text.toString(),
                 binding.etTotal.textAsFloat(),
                 chosenInvoiceDate,
@@ -165,15 +175,15 @@ class DetailsActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it) {
-                        Log.v(TAG, "Data written to database.")
+                        Log.v(tag, "Data written to database.")
                         setResult(Activity.RESULT_OK)
                     } else {
-                        Log.v(TAG, "No need to write data to database.")
+                        Log.v(tag, "No need to write data to database.")
                         setResult(Activity.RESULT_CANCELED)
                     }
                     finish()
                 }, {
-                    Log.e(TAG, "Failed to save data", it)
+                    Log.e(tag, "Failed to save data", it)
                 })
         }
     }
@@ -196,7 +206,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.tilInvoiceNo.error = getString(R.string.required)
         }
 
-        if (!binding.etTotal.isConvertableToFloat() || binding.etTotal.textAsFloat() <= 0.00F) {
+        if (!binding.etTotal.isConvertibleToFloat() || binding.etTotal.textAsFloat() <= 0.00F) {
             valid = false
             binding.tilTotal.error = getString(R.string.invalid)
         }
@@ -214,16 +224,14 @@ class DetailsActivity : AppCompatActivity() {
         return valid
     }
 
-
     private fun pickDate(initialValue: Long, onResult: (result: Long) -> Unit) {
         val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select date")
+            .setTitleText(R.string.dialog_select_date)
             .setSelection(initialValue)
             .build()
         picker.addOnPositiveButtonClickListener {
             onResult.invoke(it)
         }
-        picker.show(supportFragmentManager, "picker")
+        picker.show(supportFragmentManager, pickerTag)
     }
-
 }

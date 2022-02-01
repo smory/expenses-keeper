@@ -8,6 +8,7 @@
     <string name="dialog_permission_message">In order to record a document camera permission is required. Please grant this permission to fully use the app.</string>
     <string name="dialog_yes">Yes, sure</string>
     <string name="dialog_no">No, thank you</string>
+    <string name="dialog_select_date">Select date</string>
 
     <string name="error_permission_not_grated">Cannot make new record without camera permission</string>
     <string name="error_save_photo">Failed to save photo</string>
@@ -27,5 +28,6 @@
     <string name="invalid">Invalid</string>
 
     <string name="deleted">Document was deleted</string>
+    <string name="no_items">Welcome in <b>Expenses Keeper</b> app. You haven\'t recorded any expenses yet. Start by adding new invoice or receipt :)</string>
 
 </resources>

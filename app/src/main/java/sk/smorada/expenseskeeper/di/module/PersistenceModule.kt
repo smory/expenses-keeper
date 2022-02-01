@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import sk.smorada.expenseskeeper.Consts
 import sk.smorada.expenseskeeper.persistence.room.DocumentDatabase
 import sk.smorada.expenseskeeper.persistence.PersistenceProvider
 import javax.inject.Named
@@ -15,7 +16,7 @@ class PersistenceModule {
     @Singleton
     @Provides
     fun provideRoom(@Named("app")context: Context): DocumentDatabase {
-        return Room.databaseBuilder(context, DocumentDatabase::class.java, "document-database").build()
+        return Room.databaseBuilder(context, DocumentDatabase::class.java, Consts.DB_NAME).build()
     }
 
     @Singleton

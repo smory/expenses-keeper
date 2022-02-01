@@ -32,7 +32,7 @@ object Extensions {
         return this.text?.toString()?.toFloat() ?: throw NumberFormatException("Input (${this.text}) cannot be converted to float")
     }
 
-    fun TextInputEditText.isConvertableToFloat(): Boolean {
+    fun TextInputEditText.isConvertibleToFloat(): Boolean {
         return try {
             this.textAsFloat()
             true
