@@ -1,0 +1,12 @@
+
+
+Possibility to include additional features:
+1. Automatic recognition of fields from document via MLKit
+2. Photo rotation, crop and contrast improvements
+3. Include VAT fields in records
+4. Filters and sorting options for documents (paid/not paid documents, partner, invoice number etc.)
+
+Known issues:
+1. Saved photo is not rotated based on camera rotation
+1. dates don't follow users locale
+2. numbers are not using local specific local specific separators
